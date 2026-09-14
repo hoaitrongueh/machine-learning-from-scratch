@@ -4,17 +4,25 @@ Python exercises documenting my progress from gradient descent and linear regres
 
 ## Learning progression
 
-1. Gradient descent and linear regression, first with Python loops and then batch updates.
-2. Binary logistic regression, cross-entropy, feature standardization, NumPy vectorization, and train/validation/test splits.
-3. Real datasets: breast-cancer classification and handwritten-digit recognition.
-4. A neural network with a ReLU hidden layer, manual backpropagation, and shuffled mini-batch SGD.
+Follow the folders in order; each script is a standalone exercise.
+
+| Stage | Exercises in study order |
+| --- | --- |
+| [01_linear_regression](01_linear_regression/) | `gradient_descent_single_step.py` → `gradient_descent_training.py` → `bias_gradient_descent.py` → `batch_linear_regression.py` → `linear_regression_with_bias.py` |
+| [02_logistic_regression](02_logistic_regression/) | `binary_logistic_regression.py` → `multifeature_logistic_regression.py` → `vectorized_logistic_regression.py` → `feature_standardization.py` → `scaled_logistic_regression.py` → `logistic_regression_train_val_test.py` → `breast_cancer_logistic_regression.py` |
+| [03_multiclass_classification](03_multiclass_classification/) | `mnist_softmax_regression.py`: ten-class classification with full-batch gradient descent |
+| [04_neural_networks](04_neural_networks/) | `mnist_one_hidden_layer_nn.py`: ReLU, manual backpropagation, and shuffled mini-batch SGD |
+
+The vectorized logistic exercise demonstrates a single parameter update; later exercises add full training loops, scaling, and evaluation. The breast-cancer exercise applies binary classification to a real dataset before the transition to MNIST.
+
+[experiments/classification_metrics.py](experiments/classification_metrics.py) preserves intermediate work on prediction thresholds, confidence, and mistake analysis. It includes unfinished helpers and is kept as learning history.
 
 ## MNIST milestones
 
 | Model | Script | Train accuracy | Test accuracy |
 | --- | --- | --- | --- |
-| Softmax regression (784 → 10) | [mnist_softmax_regression.py](mnist_softmax_regression.py) | ~90.46% | ~90.46% |
-| One-hidden-layer network (784 → 128 → 10) | [mnist_neural_network.py](mnist_neural_network.py) | 94.94% | 94.49% |
+| Softmax regression (784 → 10) | [mnist_softmax_regression.py](03_multiclass_classification/mnist_softmax_regression.py) | ~90.46% | ~90.46% |
+| One-hidden-layer network (784 → 128 → 10) | [mnist_one_hidden_layer_nn.py](04_neural_networks/mnist_one_hidden_layer_nn.py) | 94.94% | 94.49% |
 
 These are recorded results from my study runs, not newly reproduced benchmarks. Test accuracy improved by about 4.03 percentage points. The models also use different training schedules, so this is not a controlled architecture comparison.
 
@@ -41,8 +49,8 @@ python -m pip install -r requirements.txt
 Run a milestone from the repository folder:
 
 ```bash
-python mnist_softmax_regression.py
-python mnist_neural_network.py
+python 03_multiclass_classification/mnist_softmax_regression.py
+python 04_neural_networks/mnist_one_hidden_layer_nn.py
 ```
 
 The first MNIST run downloads data from OpenML and needs internet access. Later runs can reuse scikit-learn's local cache. Training can take time, especially the full-batch baseline.
@@ -50,8 +58,8 @@ The first MNIST run downloads data from OpenML and needs internet access. Later 
 Earlier exercises remain standalone scripts, for example:
 
 ```bash
-python logistic_regression_train_val_test.py
-python breast_cancer_logistic_regression.py
+python 02_logistic_regression/logistic_regression_train_val_test.py
+python 02_logistic_regression/breast_cancer_logistic_regression.py
 ```
 
 ## About the code
